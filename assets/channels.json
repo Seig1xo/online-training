@@ -11,35 +11,27 @@
       {
         "id": "item-123-456-789",
         "indent": 0,
-        "location": "hax-wp-killer.html",
-        "slug": "hax-wp-killer",
+        "location": "page1.html",
+        "slug": "page-1",
         "order": 0,
         "parent": null,
-        "title": "HAX: Wordpress Killer",
-        "description": "The future we need, not the future we have.",
+        "title": "Introduction",
+        "description": "Web Components and Lit",
         "metadata": {
-          "source": "https://www.youtube.com/watch?v=9MT-BNuUCpM",
-          "timecode": 0,
-          "author":"Bryan Ollendyke",
-          "created": 1697033522,
-          "updated": 1697034021
+          "time": 5
         }
       },
       {
         "id": "item-abc-456-789",
         "indent": 0,
-        "location": "this-is-water.html",
-        "slug": "this-is-water",
+        "location": "page2.html",
+        "slug": "page-2",
         "order": 0,
         "parent": null,
-        "title": "This, is water",
-        "description": "What is water?",
+        "title": "Getting set up",
+        "description": "Exploring the interface",
         "metadata": {
-          "source": "https://www.youtube.com/watch?v=eC7xzavzEKY",
-          "timecode": 45,
-          "author":"David Foster Wallace",
-          "created": 1697033522,
-          "updated": 1697034021
+          "time": 5
         }
       }
     ]
