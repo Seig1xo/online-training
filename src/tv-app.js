@@ -9,7 +9,7 @@ export class TvApp extends LitElement {
   constructor() {
     super();
     this.name = '';
-    this.source = new URL('../assets/channels.json', import.meta.url).href;
+    this.source = new URL('../assets/training-data.json', import.meta.url).href;
     this.listings = [];
   }
   // convention I enjoy using to define the tag's name

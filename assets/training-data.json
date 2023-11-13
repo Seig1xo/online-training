@@ -2,14 +2,14 @@
   "status": 200,
   "data": {
     "id": "123-123-123-123",
-    "title": "EdTechJokerTV",
-    "author": "EdTechJoker",
+    "title": "From Web Component to Lit Element",
+    "author": "TerryWan",
     "description": "A series of talks to learn about JSON and web standard communications",
     "license": "by-sa",
     "metadata": {},
     "items": [
       {
-        "id": "item-123-456-789",
+        "id": "item-1",
         "indent": 0,
         "location": "page1.html",
         "slug": "page-1",
@@ -22,7 +22,7 @@
         }
       },
       {
-        "id": "item-abc-456-789",
+        "id": "item-2",
         "indent": 0,
         "location": "page2.html",
         "slug": "page-2",
