@@ -18,7 +18,7 @@
         "title": "Introduction",
         "description": "Web Components and Lit",
         "metadata": {
-          "time": 5
+          "readtime": 5
         }
       },
       {
@@ -28,10 +28,23 @@
         "slug": "page-2",
         "order": 0,
         "parent": null,
-        "title": "Getting set up",
+        "title": "Getting Set Up",
         "description": "Exploring the interface",
         "metadata": {
-          "time": 5
+          "readtime": 5
+        }
+      },
+      {
+        "id": "item-3",
+        "indent": 0,
+        "location": "page3.html",
+        "slug": "page-3",
+        "order": 0,
+        "parent": null,
+        "title": "Defining A Custom Element",
+        "description": "Defining custom elements",
+        "metadata": {
+          "readtime": 5
         }
       }
     ]
