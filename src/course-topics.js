@@ -28,21 +28,25 @@ export class CourseTopics extends LitElement {
         display: block;
       }
       .wrapper {
+        text-decoration: none;
         display: flex;
-        padding: 16px;
-        background-color: #eeeeee;
+        -webkit-box-align: center;
+        align-items: center;
+        color: rgb(128, 134, 139);
         min-height: 52px;
         font-weight: bold;
         line-height: 20px;
         box-sizing: content-box;
         position: relative;
-        border: 1px solid gray;
+        font-family: Roboto, Noto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        transition: all 0.3s ease-in-out 0s;
+        border: 1px solid rgb(218, 220, 224);
         border-radius: 5px;
         margin: 4px 17px;
+        background-color: rgb(255, 255, 255);
       }
-      .wrapper:active {
-        background-color: cyan;
-      }
+      
       .course {
         display: flex;
         align-items: center;
@@ -70,7 +74,7 @@ export class CourseTopics extends LitElement {
   updated(changedProperties) {
     if (changedProperties.has("activeIndex") && this.activeIndex !== null) {
       const course = this.shadowRoot.querySelector(".course");
-      const id = this.shadowRoot.querySelector("#title");
+      const id = this.shadowRoot.querySelector(".title");
 
       if (parseInt(this.id) - 1 === this.activeIndex) {
         id.style.fontWeight = "bold";
@@ -79,7 +83,7 @@ export class CourseTopics extends LitElement {
       }
 
       if (parseInt(this.id) - 1 <= this.activeIndex) {
-        course.style.backgroundColor = "cyan";
+        course.style.backgroundColor = "blue";
         id.style.color = "black";
       } else {
         course.style.backgroundColor = "darkgray";
