@@ -9,7 +9,7 @@
     "metadata": {},
     "items": [
       {
-        "id": "item-1",
+        "id": "1",
         "indent": 0,
         "location": "page1.html",
         "slug": "page-1",
@@ -22,7 +22,7 @@
         }
       },
       {
-        "id": "item-2",
+        "id": "2",
         "indent": 0,
         "location": "page2.html",
         "slug": "page-2",
@@ -35,7 +35,7 @@
         }
       },
       {
-        "id": "item-3",
+        "id": "3",
         "indent": 0,
         "location": "page3.html",
         "slug": "page-3",
