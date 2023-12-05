@@ -18,7 +18,6 @@ export class TvApp extends LitElement {
   }
   async connectedCallback() {
     super.connectedCallback();
-    await this.fetchListings();
   }
   // convention I enjoy using to define the tag's name
   static get tag() {
