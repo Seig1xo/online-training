@@ -11,10 +11,7 @@ export class TvApp extends LitElement {
     this.source = new URL('../assets/training-data.json', import.meta.url).href;
     this.listings = [];
     this.activeIndex = 0;
-    this.currentPage = null;
-    this.contents = [];
     this.activeContent = "";
-    this.pageId = "";
   }
   async connectedCallback() {
     super.connectedCallback();
@@ -29,10 +26,7 @@ export class TvApp extends LitElement {
       source: { type: String },
       listings: { type: Array },
       activeIndex: { type: Number },
-      currentPage: { type: Object },
-      contents: { type: Array },
       activeContent: { type: String },
-      pageId: { type: String },
     };
   }
   // LitElement convention for applying styles JUST to our element
@@ -47,16 +41,14 @@ export class TvApp extends LitElement {
       .wrapper {
         display: flex;
         justify-content: space-between;
-        gap: 90px;
+        gap: 16px;
       }
       .sidebar {
         text-align: left;
-        padding: 10px;
-        margin-right: 1px;
         margin-bottom: 10px;
         display: flex;
         flex-direction: column;
-        width: 400px;
+        width: 360px;
         position: relative;
       }
       .page {
@@ -76,18 +68,16 @@ export class TvApp extends LitElement {
         margin: 19px;
         width: 81vw;
       }
-      button {
-        font-size: 14px;
-        line-height: 24px;
-        padding-bottom: 6px;
-        padding-left: 24px;
-        padding-right: 24px;
-        padding-top: 6px;
-        background: #fff;
+      sl-button.back {
         color: #1a73e8;
+        border-radius: 4px;
+        box-shadow: 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
       }
-      button:disabled {
-        visibility: hidden;
+      sl-button.next {
+        background-color: #1a73e8;
+        color: white;
+        border-radius: 4px;
+        box-shadow: 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
       }
       `
     ];
@@ -108,8 +98,8 @@ export class TvApp extends LitElement {
         </div>
 
         <div class="buttonContainer">
-          <button ?disabled="${this.activeIndex <= 0}" @click=${() => this.backPage()}>Back</button>
-          <button ?disabled="${this.activeIndex >= this.listings.length - 1}" @click=${() => this.nextPage()}>Next</button>
+          <sl-button class="back" ?disabled="${this.activeIndex <= 0}" @click=${() => this.backPage()}>Back</sl-button>
+          <sl-button class="next" ?disabled="${this.activeIndex >= this.listings.length - 1}" @click=${() => this.nextPage()}>Next</sl-button>
         </div>
         
       </div>
@@ -118,11 +108,9 @@ export class TvApp extends LitElement {
 
   async chooseCourse(index) {
     this.activeIndex = index; 
-    var course = this.listings[index].location;
-    var contentPath = "/assets/" + course;
+    var contentPath = "/assets/" + this.listings[index].location;
     var response = await fetch(contentPath);
-    var text = await response.text();
-    this.activeContent = text;
+    this.activeContent = await response.text();
     this.requestUpdate();
   }
 
