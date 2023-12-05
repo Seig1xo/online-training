@@ -1,4 +1,3 @@
-// import stuff
 import { LitElement, html, css } from 'lit';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
@@ -16,10 +15,10 @@ export class TvApp extends LitElement {
     this.contents = [];
     this.activeContent = "";
     this.pageId = "";
-    this.onCourseClick = this.onCourseClick.bind(this);
   }
-  connectedCallback() {
+  async connectedCallback() {
     super.connectedCallback();
+    await this.fetchListings();
   }
   // convention I enjoy using to define the tag's name
   static get tag() {
@@ -88,6 +87,9 @@ export class TvApp extends LitElement {
         background: #fff;
         color: #1a73e8;
       }
+      button:disabled {
+        visibility: hidden;
+      }
       `
     ];
   }
@@ -98,7 +100,7 @@ export class TvApp extends LitElement {
 
         <div class="sidebar">
         ${this.listings.map((course, index) => html`
-          <course-topics title="${course.title}" id="${course.id}" activeIndex="${this.activeIndex}" @click="${() => this.onCourseClick(index)}"></course-topics>
+          <course-topics title="${course.title}" id="${course.id}" activeIndex="${this.activeIndex}" @click="${() => this.chooseCourse(index)}"></course-topics>
         `,)}
         </div>
 
@@ -107,42 +109,33 @@ export class TvApp extends LitElement {
         </div>
 
         <div class="buttonContainer">
-          <button @click=${() => this.backPage()}>Back</button>
-          <button @click=${() => this.nextPage()}>Next</button>
+          <button ?disabled="${this.activeIndex <= 0}" @click=${() => this.backPage()}>Back</button>
+          <button ?disabled="${this.activeIndex >= this.listings.length - 1}" @click=${() => this.nextPage()}>Next</button>
         </div>
         
       </div>
     `;
   }
 
-  async onCourseClick(index) {
+  async chooseCourse(index) {
     this.activeIndex = index; 
-    const item = this.listings[index].location; 
-    const contentPath = "/assets/" + item;
-    const response = await fetch(contentPath);
-    this.activeContent = await response.text();
-   
+    var course = this.listings[index].location;
+    var contentPath = "/assets/" + course;
+    var response = await fetch(contentPath);
+    var text = await response.text();
+    this.activeContent = text;
+    this.requestUpdate();
   }
 
   async backPage() {
-    if (this.activeIndex !== null) {
-      const prevIndex = this.activeIndex - 1;
-      const course = this.listings[prevIndex].location;
-      const contentPath = "/assets/" + course;
-      const response = await fetch(contentPath);
-      this.activeContent = await response.text();
-      this.activeIndex = prevIndex; 
+    if (this.activeIndex !== null && this.activeIndex > 0) {
+      this.chooseCourse(this.activeIndex - 1);
     }
   }
 
   async nextPage() {
-    if (this.activeIndex !== null) {
-      const nextIndex = this.activeIndex + 1;
-      const course = this.listings[nextIndex].location;
-      const contentPath = "/assets/" + course;
-      const response = await fetch(contentPath);
-      this.activeContent = await response.text();
-      this.activeIndex = nextIndex; 
+    if (this.activeIndex !== null && this.activeIndex < this.listings.length - 1) {
+      this.chooseCourse(this.activeIndex + 1); 
     }
   }
 
