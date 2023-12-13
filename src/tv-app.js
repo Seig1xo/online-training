@@ -15,6 +15,7 @@ export class TvApp extends LitElement {
   }
   async connectedCallback() {
     super.connectedCallback();
+    await this.loadContent();
   }
   // convention I enjoy using to define the tag's name
   static get tag() {
@@ -37,6 +38,11 @@ export class TvApp extends LitElement {
         display: block;
         margin: 16px;
         padding: 16px;
+      }
+      .timer {
+        position: fixed;
+        top: 8px;
+        right: 32px;
       }
       .wrapper {
         display: flex;
@@ -78,10 +84,11 @@ export class TvApp extends LitElement {
   // LitElement rendering template of your element
   render() {
     return html`
-      <time-remaining time="${this.time}"></time-remaining>
+      <div class="timer">
+        <time-remaining time="${this.time}"></time-remaining>
+      </div>
 
       <div class="wrapper">
-
         <div class="sidebar">
         ${this.listings.map((course, index) => html`
           <course-topics title="${course.title}" id="${course.id}" activeIndex="${this.activeIndex}" @click="${() => this.chooseCourse(index)}"></course-topics>
@@ -94,18 +101,16 @@ export class TvApp extends LitElement {
           <sl-button class="back" ?disabled="${this.activeIndex <= 0}" @click=${() => this.backPage()}>Back</sl-button>
           <sl-button variant="primary" class="next" ?disabled="${this.activeIndex >= this.listings.length - 1}" @click=${() => this.nextPage()}>Next</sl-button>
         </div>
-        
       </div>
     `;
   }
 
   async chooseCourse(index) {
     this.activeIndex = index; 
-    var contentPath = "/assets/" + this.listings[index].location;
-    var response = await fetch(contentPath);
+    const contentPath = "/assets/" + this.listings[index].location;
+    const response = await fetch(contentPath);
     this.activeContent = await response.text();
     this.time = this.listings[this.activeIndex].metadata.readtime;
-    this.requestUpdate();
   }
 
   async backPage() {
@@ -117,6 +122,22 @@ export class TvApp extends LitElement {
   async nextPage() {
     if (this.activeIndex !== null && this.activeIndex < this.listings.length - 1) {
       this.chooseCourse(this.activeIndex + 1); 
+    }
+  }
+
+  async loadContent() {
+    try {
+      const response = await fetch(this.source);
+      if (!response.ok) {
+        throw new Error('Network could not respond.');
+      }
+      const json = await response.json();
+      if (json.status === 200 && json.data.items) {
+        this.listings = json.data.items;
+        this.chooseCourse(0); 
+      }
+    } catch (error) {
+      console.error('Could not load content:', error);
     }
   }
 

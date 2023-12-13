@@ -20,7 +20,6 @@ export class TimeRemaining extends LitElement {
         return css`
           :host {
             display: inline-block;
-            padding: 16px;
           }
           .timer {
             font-family: Roboto, Noto, sans-serif;
