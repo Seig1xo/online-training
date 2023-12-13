@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
-import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@lrnwebcomponents/code-sample/code-sample.js'
+import '@lrnwebcomponents/video-player/video-player.js';
 import "./course-topics.js";
 import "./time-remaining.js";
 
@@ -58,10 +59,11 @@ export class TvApp extends LitElement {
         position: relative;
       }
       .page {
+        padding: 8px;
         font-size: 1.1em;
         border: 1px solid black;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         position: relative;
       }
       .buttonContainer {
@@ -71,8 +73,8 @@ export class TvApp extends LitElement {
         position: fixed;
         bottom: 0;
         right: 0;
-        margin: 19px;
-        width: 81vw;
+        margin: 16px;
+        width: 82%;
       }
       sl-button {
         border-radius: 4px;

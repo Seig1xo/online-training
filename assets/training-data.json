@@ -46,6 +46,19 @@
         "metadata": {
           "readtime": 35
         }
+      },
+      {
+        "id": "4",
+        "indent": 0,
+        "location": "page4.html",
+        "slug": "page-4",
+        "order": 0,
+        "parent": null,
+        "title": "Shadow DOM",
+        "description": "Shadow DOM",
+        "metadata": {
+          "readtime": 30
+        }
       }
     ]
   }
