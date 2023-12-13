@@ -18,7 +18,7 @@
         "title": "Introduction",
         "description": "Web Components and Lit",
         "metadata": {
-          "readtime": 5
+          "readtime": 45
         }
       },
       {
@@ -31,7 +31,7 @@
         "title": "Getting Set Up",
         "description": "Exploring the interface",
         "metadata": {
-          "readtime": 5
+          "readtime": 40
         }
       },
       {
@@ -44,7 +44,7 @@
         "title": "Define A Custom Element",
         "description": "Defining custom elements",
         "metadata": {
-          "readtime": 5
+          "readtime": 35
         }
       }
     ]

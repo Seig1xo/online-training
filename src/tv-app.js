@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import "./course-topics.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import "./time-remaining.js";
 
 export class TvApp extends LitElement {
   // defaults
@@ -68,14 +68,7 @@ export class TvApp extends LitElement {
         margin: 19px;
         width: 81vw;
       }
-      sl-button.back {
-        color: #1a73e8;
-        border-radius: 4px;
-        box-shadow: 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
-      }
-      sl-button.next {
-        background-color: #1a73e8;
-        color: white;
+      sl-button {
         border-radius: 4px;
         box-shadow: 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
       }
@@ -85,6 +78,8 @@ export class TvApp extends LitElement {
   // LitElement rendering template of your element
   render() {
     return html`
+      <time-remaining time="${this.time}"></time-remaining>
+
       <div class="wrapper">
 
         <div class="sidebar">
@@ -93,13 +88,11 @@ export class TvApp extends LitElement {
         `,)}
         </div>
 
-        <div class="page">
-          ${this.activeContent ? unsafeHTML(this.activeContent) : html``}
-        </div>
+        <div class="page" .innerHTML="${this.activeContent}"></div>
 
         <div class="buttonContainer">
           <sl-button class="back" ?disabled="${this.activeIndex <= 0}" @click=${() => this.backPage()}>Back</sl-button>
-          <sl-button class="next" ?disabled="${this.activeIndex >= this.listings.length - 1}" @click=${() => this.nextPage()}>Next</sl-button>
+          <sl-button variant="primary" class="next" ?disabled="${this.activeIndex >= this.listings.length - 1}" @click=${() => this.nextPage()}>Next</sl-button>
         </div>
         
       </div>
@@ -111,6 +104,7 @@ export class TvApp extends LitElement {
     var contentPath = "/assets/" + this.listings[index].location;
     var response = await fetch(contentPath);
     this.activeContent = await response.text();
+    this.time = this.listings[this.activeIndex].metadata.readtime;
     this.requestUpdate();
   }
 
