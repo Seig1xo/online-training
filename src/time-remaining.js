@@ -25,7 +25,7 @@ export class TimeRemaining extends LitElement {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 16px;
             font-weight: 400;
-            color: black;
+            color: rgb(78, 82, 86);
           }
         `;
     }

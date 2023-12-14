@@ -59,10 +59,16 @@ export class TvApp extends LitElement {
         position: relative
       }
       .page {
+        background-color: white;
         padding: 8px;
-        font-size: 1.1em;
-        border: 1px solid black;
-        width: 78%;
+        font-size: 14px;
+        box-sizing: border-box;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 2px 6px 2px rgba(60,64,67,.15);
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 80%;
         margin-bottom: 8px;
         position: relative;
       }
@@ -74,7 +80,7 @@ export class TvApp extends LitElement {
         bottom: 0;
         right: 0;
         margin: 16px;
-        width: 82%;
+        width: 83%;
       }
       sl-button {
         border-radius: 4px;
