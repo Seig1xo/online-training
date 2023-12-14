@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Templates</title>
+</head>
+<body>
+    <script type="module">
+        import '@shoelace-style/shoelace/dist/components/button/button.js';
+    </script>
+
+    <h1>5. HTML Templates</h1>
+    <h2>Why Templates</h2>
+    <p>Using <code translate="no" dir="ltr">innerHTML</code> and template literal strings with no sanitization may cause security issues with script injection. Methods in the past have included using <code translate="no" dir="ltr">DocumentFragment</code>s, but these also come with other issues such as images loading and scripts running when the templates are defined as well as introducing obstacles for reusability. This is where the <code translate="no" dir="ltr">&lt;template&gt;</code> element comes in; templates provide inert DOM, a highly performant method to clone nodes, and reusable templating.</p>
+    <h2>Using Templates</h2>
+    <p>Next, transition the component to use HTML Templates:</p>
+    <p><a href="https://lit.dev/playground/#project=W3sibmFtZSI6ImluZGV4Lmh0bWwiLCJjb250ZW50IjoiPCFET0NUWVBFIGh0bWw-XG48aHRtbD5cbiA8aGVhZD5cbiAgIDxzY3JpcHQgc3JjPVwiLi9pbmRleC5qc1wiIHR5cGU9XCJtb2R1bGVcIj48L3NjcmlwdD5cbiAgIDxzdHlsZT5cbiAgICAgc3BhbiB7XG4gICAgICAgYm9yZGVyOiAxcHggc29saWQgcmVkO1xuICAgICB9XG4gICA8L3N0eWxlPlxuIDwvaGVhZD5cbiA8Ym9keT5cbiAgIDxyYXRpbmctZWxlbWVudD5cbiAgICAgPGRpdj5cbiAgICAgICBUaGlzIGlzIHRoZSBsaWdodCBET00hXG4gICAgIDwvZGl2PlxuICAgPC9yYXRpbmctZWxlbWVudD5cbiA8L2JvZHk-XG48L2h0bWw-In0seyJuYW1lIjoiaW5kZXguanMiLCJjb250ZW50IjoiY2xhc3MgUmF0aW5nRWxlbWVudCBleHRlbmRzIEhUTUxFbGVtZW50IHtcbiBjb25zdHJ1Y3RvcigpIHtcbiAgIHN1cGVyKCk7XG4gICB0aGlzLnJhdGluZyA9IDA7XG4gfVxuIGNvbm5lY3RlZENhbGxiYWNrKCkge1xuICAgY29uc3Qgc2hhZG93Um9vdCA9IHRoaXMuYXR0YWNoU2hhZG93KHttb2RlOiAnb3Blbid9KTtcblxuICAgc2hhZG93Um9vdC5pbm5lckhUTUwgPSBgXG4gICAgIDxzdHlsZT5cbiAgICAgICA6aG9zdCB7XG4gICAgICAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgfVxuICAgICAgIGJ1dHRvbiB7XG4gICAgICAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcbiAgICAgICAgIGJvcmRlcjogbm9uZTtcbiAgICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICB9XG4gICAgIDwvc3R5bGU-XG4gICAgIDxidXR0b24gY2xhc3M9XCJ0aHVtYl9kb3duXCIgPlxuICAgICAgIDxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIGhlaWdodD1cIjI0XCIgdmlld0JveD1cIjAgMCAyNCAyNFwiIHdpZHRoPVwiMjRcIj48cGF0aCBkPVwiTTE1IDNINmMtLjgzIDAtMS41NC41LTEuODQgMS4yMmwtMy4wMiA3LjA1Yy0uMDkuMjMtLjE0LjQ3LS4xNC43M3YyYzAgMS4xLjkgMiAyIDJoNi4zMWwtLjk1IDQuNTctLjAzLjMyYzAgLjQxLjE3Ljc5LjQ0IDEuMDZMOS44MyAyM2w2LjU5LTYuNTljLjM2LS4zNi41OC0uODYuNTgtMS40MVY1YzAtMS4xLS45LTItMi0yem00IDB2MTJoNFYzaC00elwiLz48L3N2Zz5cbiAgICAgPC9idXR0b24-XG4gICAgIDxzcGFuIGNsYXNzPVwicmF0aW5nXCI-JHt0aGlzLnJhdGluZ308L3NwYW4-XG4gICAgIDxidXR0b24gY2xhc3M9XCJ0aHVtYl91cFwiPlxuICAgICAgIDxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIGhlaWdodD1cIjI0XCIgdmlld0JveD1cIjAgMCAyNCAyNFwiIHdpZHRoPVwiMjRcIj48cGF0aCBkPVwiTTEgMjFoNFY5SDF2MTJ6bTIyLTExYzAtMS4xLS45LTItMi0yaC02LjMxbC45NS00LjU3LjAzLS4zMmMwLS40MS0uMTctLjc5LS40NC0xLjA2TDE0LjE3IDEgNy41OSA3LjU5QzcuMjIgNy45NSA3IDguNDUgNyA5djEwYzAgMS4xLjkgMiAyIDJoOWMuODMgMCAxLjU0LS41IDEuODQtMS4yMmwzLjAyLTcuMDVjLjA5LS4yMy4xNC0uNDcuMTQtLjczdi0yelwiLz48L3N2Zz5cbiAgICAgPC9idXR0b24-XG4gICBgO1xuIH1cbn1cblxuY3VzdG9tRWxlbWVudHMuZGVmaW5lKCdyYXRpbmctZWxlbWVudCcsIFJhdGluZ0VsZW1lbnQpOyJ9LHsibmFtZSI6InRodW1iX2Rvd24uc3ZnIiwiY29udGVudCI6IjxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIGhlaWdodD1cIjI0XCIgdmlld0JveD1cIjAgMCAyNCAyNFwiIHdpZHRoPVwiMjRcIj48cGF0aCBkPVwiTTE1IDNINmMtLjgzIDAtMS41NC41LTEuODQgMS4yMmwtMy4wMiA3LjA1Yy0uMDkuMjMtLjE0LjQ3LS4xNC43M3YyYzAgMS4xLjkgMiAyIDJoNi4zMWwtLjk1IDQuNTctLjAzLjMyYzAgLjQxLjE3Ljc5LjQ0IDEuMDZMOS44MyAyM2w2LjU5LTYuNTljLjM2LS4zNi41OC0uODYuNTgtMS40MVY1YzAtMS4xLS45LTItMi0yem00IDB2MTJoNFYzaC00elwiLz48L3N2Zz4ifSx7Im5hbWUiOiJ0aHVtYl91cC5zdmciLCJjb250ZW50IjoiPHN2ZyB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCIgaGVpZ2h0PVwiMjRcIiB2aWV3Qm94PVwiMCAwIDI0IDI0XCIgd2lkdGg9XCIyNFwiPjxwYXRoIGQ9XCJNMSAyMWg0VjlIMXYxMnptMjItMTFjMC0xLjEtLjktMi0yLTJoLTYuMzFsLjk1LTQuNTcuMDMtLjMyYzAtLjQxLS4xNy0uNzktLjQ0LTEuMDZMMTQuMTcgMSA3LjU5IDcuNTlDNy4yMiA3Ljk1IDcgOC40NSA3IDl2MTBjMCAxLjEuOSAyIDIgMmg5Yy44MyAwIDEuNTQtLjUgMS44NC0xLjIybDMuMDItNy4wNWMuMDktLjIzLjE0LS40Ny4xNC0uNzN2LTJ6XCIvPjwvc3ZnPiJ9XQ" target="_blank"><sl-button class="button button-primary">Code Checkpoint</sl-button></a></p>
+    <h3>index.html</h3>
+    <pre><code>
+&lt;body&gt;
+ &lt;template id=&quot;rating-element-template&quot;&gt;
+   &lt;style&gt;
+     :host {
+       display: inline-flex;
+       align-items: center;
+     }
+     button {
+       background: transparent;
+       border: none;
+       cursor: pointer;
+     }
+   &lt;/style&gt;
+   &lt;button class=&quot;thumb_down&quot; &gt;
+     &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;24&quot; viewbox=&quot;0 0 24 24&quot; width=&quot;24&quot;&gt;&lt;path d=&quot;M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z&quot;/&gt;&lt;/svg&gt;
+   &lt;/button&gt;
+   &lt;span class=&quot;rating&quot;&gt;&lt;/span&gt;
+   &lt;button class=&quot;thumb_up&quot;&gt;
+     &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;24&quot; viewbox=&quot;0 0 24 24&quot; width=&quot;24&quot;&gt;&lt;path d=&quot;M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z&quot;/&gt;&lt;/svg&gt;
+   &lt;/button&gt;
+ &lt;/template&gt;
+
+ &lt;rating-element&gt;
+   &lt;div&gt;
+     This is the light DOM!
+   &lt;/div&gt;
+ &lt;/rating-element&gt;
+&lt;/body&gt;
+    </code></pre>
+    <p>Here you moved the DOM content into a template tag in the main document's DOM. Now refactor the custom element definition:</p>
+    <h3>index.js</h3>
+    <pre><code>
+class RatingElement extends HTMLElement {
+    constructor() {
+        super();
+        this.rating = 0;
+    }
+    connectedCallback() {
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        const templateContent = document.getElementById('rating-element-template').content;
+        const clonedContent = templateContent.cloneNode(true);
+        shadowRoot.appendChild(clonedContent);
+    
+        this.shadowRoot.querySelector('.rating').innerText = this.rating;
+    }
+}
+    
+customElements.define('rating-element', RatingElement);
+    </code></pre>
+    <p>To use this template element, you query the template, get it's contents, and clone those nodes with <code translate="no" dir="ltr">templateContent.cloneNode</code> where the <code translate="no" dir="ltr">true</code> argument performs a deep clone. You then initialize the dom with the data.</p>
+    <p>Congratulations, you now have a Web Component! Unfortunately it does not do anything yet, so next, add some functionality.</p>
+</body>
+</html>

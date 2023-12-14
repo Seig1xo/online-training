@@ -6,39 +6,94 @@
     <title>Define A Custom Element</title>
 </head>
 <body>
+    <script type="module">
+      import '@shoelace-style/shoelace/dist/components/button/button.js';
+    </script>
+    <div>
     <h1>3. Define A Custom Element</h1>
-    <section>
         <h2>Custom Elements</h2>
-        <p>Web Components are a collection of 4 native web APIs: ES Modules, Custom Elements, Shadow DOM, and HTML Templates. You've already used ES modules, which allow you to create JavaScript modules with imports and exports loaded with <code>&lt;script type="module"&gt;</code>.</p>
-
-        <h3>Defining a Custom Element</h3>
-        <p><a href="https://lit.dev/playground/#project=W3siY29udGVudCI6IjwhZG9jdHlwZSBodG1sPlxuPGhlYWQ-XG48L2hlYWQ-XG48Ym9keT5cbiAgPGRpdj5IZWxsbyBXb3JsZCE8L2Rpdj5cbjwvYm9keT5cbiIsIm5hbWUiOiJpbmRleC5odG1sIn1d" target="_blank"><button>Code Checkpoint</button></a></p>
-        <p>The Custom Elements specification lets users define their own HTML elements using JavaScript. The names must contain a hyphen (-) to differentiate them from native browser elements.</p>
-        
-        <p>Example of defining a custom element:</p>
-        <pre><code>class RatingElement extends HTMLElement {}
+        <p>Web Components are a collection of 4 native web APIs. They are:</p>
+        <ul>
+          <li>ES Modules</li>
+          <li>Custom Elements</li>
+          <li>Shadow DOM</li>
+          <li>HTML Templates</li>
+        </ul>
+        <p>You've already used ES modules, which allow you to create JavaScript modules with imports and exports loaded with <code>&lt;script type="module"&gt;</code>.</p>
+        <h2>Defining a Custom Element</h2>
+        <p><a href="https://lit.dev/playground/#project=W3siY29udGVudCI6IjwhZG9jdHlwZSBodG1sPlxuPGhlYWQ-XG48L2hlYWQ-XG48Ym9keT5cbiAgPGRpdj5IZWxsbyBXb3JsZCE8L2Rpdj5cbjwvYm9keT5cbiIsIm5hbWUiOiJpbmRleC5odG1sIn1d" target="_blank"><sl-button>Code Checkpoint</sl-button></a></p>
+        <p>The Custom Elements specification lets users define their own HTML elements using JavaScript. The names must contain a hyphen (<code>-</code>) to differentiate them from native browser elements.Clear the <code>index.js</code> file and define a custom element class:</p>
+        <h3>index.js</h3>
+        <pre><code>
+class RatingElement extends HTMLElement {}
 customElements.define('rating-element', RatingElement);
         </code></pre>
-        
-        <p>Place a <code>&lt;rating-element&gt;</code> in the document body to see how it renders.</p>
+        <p>A custom element is defined by associating a class that extends <code translate="no" dir="ltr">HTMLElement</code> with a hyphenated tag name. The call to <code translate="no" dir="ltr">customElements.define</code> tells the browser to associate the class <code translate="no" dir="ltr">RatingElement</code> with the tagName <code translate="no" dir="ltr">‘rating-element'</code>. This means that every element in your document with the name <code translate="no" dir="ltr">&lt;rating-element&gt;</code> will be associated with this class.</p>
+        <p>Since <code translate="no" dir="ltr">customElements.define</code> has a global scope, you cannot currently call it more than once for the same tag name even if the same class definition is given.</p>
+        <p>Place a <code translate="no" dir="ltr">&lt;rating-element&gt;</code> in the document body and see what renders.</p>
 
-        <h3>Custom Element Lifecycle</h3>
-        <p>Custom Elements come with a set of lifecycle hooks: constructor, connectedCallback, disconnectedCallback, attributeChangedCallback, and adoptedCallback.</p>
+        <h3>index.html</h3>
+        <pre><code>
+&lt;body&gt;
+  &lt;rating-element&gt;&lt;/rating-element&gt;
+&lt;/body&gt;
+        </code></pre>
+        <p>Now, looking at the output, you'll see that nothing has rendered. This is expected, because you haven't told the browser how to render <code translate="no" dir="ltr">&lt;rating-element&gt;</code>. You can confirm that the Custom Element definition has succeeded by selecting the <code translate="no" dir="ltr">&lt;rating-element&gt;</code> in Chrome Dev Tools' element selector and, in the console, calling:</p>
+        <pre><code>$0.constructor</code></pre>
+        <p>Which should output:</p>
+        <pre><code>class RatingElement extends HTMLElement {}</code></pre>
 
-        <h3>Render DOM</h3>
-        <p>Set the element's content when it gets attached to the DOM in the connectedCallback method:</p>
-        <pre><code>class RatingElement extends HTMLElement {
- constructor() {
+        <h2>Custom Element Lifecycle</h2>
+        <p>Custom Elements come with a set of lifecycle hooks. They are:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">constructor</code></li>
+          <li><code translate="no" dir="ltr">connectedCallback</code></li>
+          <li><code translate="no" dir="ltr">disconnectedCallback</code></li>
+          <li><code translate="no" dir="ltr">attributeChangedCallback</code></li>
+          <li><code translate="no" dir="ltr">adoptedCallback</code></li>
+        </ul>
+        <p>The <code translate="no" dir="ltr">constructor</code> is called when the element is first created: for example, by calling <code translate="no" dir="ltr">document.createElement(‘rating-element')</code> or <code translate="no" dir="ltr">new RatingElement()</code>. The constructor is a good place to set up your element, but it is typically considered bad practice to do DOM manipulations in the constructor for element "boot-up" performance reasons.</p>
+        <p>The <code translate="no" dir="ltr">connectedCallback</code> is called when the custom element is attached to the DOM. This is typically where initial DOM manipulations happen.</p>
+        <p>The <code translate="no" dir="ltr">disconnectedCallback</code> is called after the custom element is removed from the DOM.</p>
+        <p>The <code translate="no" dir="ltr">attributeChangedCallback(attrName, oldValue, newValue)</code> is called when any of the user-specified attributes change.</p>
+        <p>The <code translate="no" dir="ltr">adoptedCallback</code> is called when the custom element is adopted from another <code translate="no" dir="ltr">documentFragment</code> into the main document via <code translate="no" dir="ltr">adoptNode</code> such as in <code translate="no" dir="ltr">HTMLTemplateElement</code>.</p>
+
+        <h2>Render DOM</h2>
+        <p>Now, return to the custom element and associate some DOM with it. Set the element's content when it gets attached to the DOM:</p>
+        <h3>index.js</h3>
+        <pre><code-sample>
+class RatingElement extends HTMLElement {
+  constructor() {
    super();
    this.rating = 0;
- }
- connectedCallback() {
-   this.innerHTML = \`...HTML and SVG for thumbs up and down...\`;
- }
+  }
+  connectedCallback() {
+   this.innerHTML = `
+    &lt;style&gt;
+    rating-element {
+      display: inline-flex;
+      align-items: center;
+    }
+    rating-element button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    &lt;/style&gt;
+    &lt;button class=&quot;thumb_down&quot; &gt;
+      &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;24&quot;&gt;&lt;path d=&quot;M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z&quot;/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+    &lt;span class=&quot;rating&quot;&gt;${this.rating}&lt;/span&gt;
+    &lt;button class=&quot;thumb_up&quot;&gt;
+      &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;24&quot;&gt;&lt;path d=&quot;M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z&quot;/&gt;&lt;/svg&gt;
+    &lt;/button&gt;
+   `;
+  }
 }
 customElements.define('rating-element', RatingElement);
-        </code></pre>
-        <p>This adds DOM children to <code>&lt;rating-element&gt;</code> to display the current rating with thumbs up and thumbs down buttons.</p>
-    </section>
+        </code-sample></pre>
+        <p>In the <code translate="no" dir="ltr">constructor</code>, you store an instance property called <code translate="no" dir="ltr">rating</code> on the element. In the <code translate="no" dir="ltr">connectedCallback</code>, you add DOM children to <code translate="no" dir="ltr">&lt;rating-element&gt;</code> to display the current rating, together with thumbs up and thumbs down buttons.</p>
+        <p>Please note that for the sake of example, you are not following accessibility best practices for these controls and inputs.</p>
+    </div>
 </body>
 </html>

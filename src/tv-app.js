@@ -55,14 +55,14 @@ export class TvApp extends LitElement {
         margin-bottom: 10px;
         display: flex;
         flex-direction: column;
-        width: 360px;
-        position: relative;
+        width: auto;
+        position: relative
       }
       .page {
         padding: 8px;
         font-size: 1.1em;
         border: 1px solid black;
-        width: 100%;
+        width: 78%;
         margin-bottom: 8px;
         position: relative;
       }

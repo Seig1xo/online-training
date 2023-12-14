@@ -47,7 +47,7 @@ export class CourseTopics extends LitElement {
         background-color: rgb(255, 255, 255);
       }
       
-      .course {
+      .coursenum {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -67,13 +67,14 @@ export class CourseTopics extends LitElement {
         align-items: center;
         margin: auto -2px;
         font-weight: normal;
+        padding-right: 12px;
       }
     `;
   }
 
   updated(changedProperties) {
     if (changedProperties.has("activeIndex") && this.activeIndex !== null) {
-      const course = this.shadowRoot.querySelector(".course");
+      const course = this.shadowRoot.querySelector(".coursenum");
       const id = this.shadowRoot.querySelector(".title");
 
       if (parseInt(this.id) - 1 === this.activeIndex) {
@@ -96,7 +97,7 @@ export class CourseTopics extends LitElement {
   render() {
     return html`
       <div class="wrapper">
-        <span class="course">${this.id}</span>
+        <span class="coursenum">${this.id}</span>
         <span class="title">${this.title}</span>
         <slot></slot>
       </div>  

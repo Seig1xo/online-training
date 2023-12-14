@@ -6,11 +6,14 @@
     <title>Getting set up</title>
 </head>
 <body>
-    <div class="inner">
+    <script type="module">
+        import '@shoelace-style/shoelace/dist/components/button/button.js';
+    </script>
+    <div>
         <h1>2. Getting set up &amp; exploring the Playground</a></h1>
         <h2 data-text="Accessing the code">Accessing the code</h2>
         <p>Throughout the codelab there will be links to the Lit playground like this:</p>
-        <p><a href="https://lit.dev/playground/#project=W3siY29udGVudCI6IjwhZG9jdHlwZSBodG1sPlxuPGhlYWQ-XG48L2hlYWQ-XG48Ym9keT5cbiAgPGRpdj5IZWxsbyBXb3JsZCE8L2Rpdj5cbjwvYm9keT5cbiIsIm5hbWUiOiJpbmRleC5odG1sIn1d" target="_blank"><button class="button button-primary">Code Checkpoint</button></a></p>
+        <p><a href="https://lit.dev/playground/#project=W3siY29udGVudCI6IjwhZG9jdHlwZSBodG1sPlxuPGhlYWQ-XG48L2hlYWQ-XG48Ym9keT5cbiAgPGRpdj5IZWxsbyBXb3JsZCE8L2Rpdj5cbjwvYm9keT5cbiIsIm5hbWUiOiJpbmRleC5odG1sIn1d" target="_blank"><sl-button class="button button-primary">Code Checkpoint</sl-button></a></p>
         <p>The playground is a code sandbox that runs completely in your browser. It can compile and run TypeScript and JavaScript files, and it can also automatically resolve imports to node modules. e.g.</p>
         <pre><code class="language-ts" dir="ltr"><span class="com"><span class="com">// before</span></span><span class="pln"><span class="pln"><br></span></span><span class="kwd"><span class="kwd">import</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">'./my-file.js'</span></span><span class="pun"><span class="pun">;</span></span><span class="pln"><span class="pln"><br></span></span><span class="kwd"><span class="kwd">import</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">'lit'</span></span><span class="pun"><span class="pun">;</span></span><span class="pln"><span class="pln"><br><br></span></span><span class="com"><span class="com">// after</span></span><span class="pln"><span class="pln"><br></span></span><span class="kwd"><span class="kwd">import</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">'./my-file.js'</span></span><span class="pun"><span class="pun">;</span></span><span class="pln"><span class="pln"><br></span></span><span class="kwd"><span class="kwd">import</span></span><span class="pln"><span class="pln"> </span></span><span class="str"><span class="str">'https://unpkg.com/lit?module'</span></span><span class="pun"><span class="pun">;</span></span><span class="pln"><span class="pln"><br></span></span></code></pre></devsite-code>
         <p>You can do the entire tutorial in the Lit playground, using these checkpoints as starting points. If you're using VS Code, you can use these checkpoints to download the starting code for any step, as well as using them to check your work.</p>
@@ -24,11 +27,10 @@
             <li>Reload button.</li>
             <li>Download button.</li>
         </ol>
-        <aside class="special"><p>You can also use <code translate="no" dir="ltr">ctrl + s</code> (<code translate="no" dir="ltr">cmd + s</code> for Mac) to save your progress as a URL. This will allow you to reload the page and not lose your progress or share your code with others.</p>
-        </aside>
+        <p>You can also use <code translate="no" dir="ltr">ctrl + s</code> (<code translate="no" dir="ltr">cmd + s</code> for Mac) to save your progress as a URL. This will allow you to reload the page and not lose your progress or share your code with others.</p>
         <h2 is-upgraded="" id="vs-code-setup-advanced" data-text="VS Code setup (Advanced)">VS Code setup (Advanced)</h2>
-        <aside class="warning"><p> If you intend to run this codelab entirely in the browser, you can skip this step.</p>
-        </aside>
+        <p> If you intend to run this codelab entirely in the browser, you can skip this step.</p>
+        
         <p>Here are the benefits to using this VS Code setup:</p>
         <ul>
             <li>Template type checking</li>

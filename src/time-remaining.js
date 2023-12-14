@@ -22,10 +22,10 @@ export class TimeRemaining extends LitElement {
             display: inline-block;
           }
           .timer {
-            font-family: Roboto, Noto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 16px;
             font-weight: 400;
-            text-decoration: none;
+            color: black;
           }
         `;
     }
